@@ -1,0 +1,45 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="MyBaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="android:statusBarColor">?superColor</item>
+        <item name="android:navigationBarColor">?superColor</item>
+        <item name="colorPrimary">?superColor</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">?superColor</item>
+        <item name="colorOnPrimaryContainer">?superColor</item>
+        <item name="colorPrimaryInverse">?superColor</item>
+        <item name="colorSecondary">?superColor</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">?superColor</item>
+        <item name="colorOnSecondaryContainer">?superColor</item>
+        <item name="colorTertiary">?superColor</item>
+        <item name="colorOnTertiary">?superColor</item>
+        <item name="colorTertiaryContainer">?superColor</item>
+        <item name="colorOnTertiaryContainer">?superColor</item>
+        <item name="colorOnSurface">?superColor</item>
+
+        <item name="materialButtonStyle">@style/myButtonStyle</item>
+        <item name="bottomAppBarStyle">@style/myBottomAppBarStyle</item>
+        <item name="chipStyle">@style/myChipStyle</item>
+        <item name="tabStyle">@style/myTabStyle</item>
+        <item name="materialCardViewStyle">@style/myMaterialCardViewStyle</item>
+        <!--        <item name="textInputStyle"></item>-->
+        <item name="textAppearanceHeadline1">@style/myHeadline1</item>
+        <!--        <item name="shapeAppearanceSmallComponent">@style/mySmallComponentStyle</item>-->
+
+    </style>
+
+
+    <style name="MyRedTheme" parent="MyBaseTheme">
+        <item name="superColor">@color/red_900</item>
+    </style>
+
+    <style name="MyBlueTheme" parent="MyBaseTheme">
+        <item name="superColor">#0E62FF</item>
+    </style>
+
+    <style name="MyGreenTheme" parent="MyBaseTheme">
+        <item name="superColor">#26FF0E</item>
+    </style>
+</resources>

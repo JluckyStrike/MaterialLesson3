@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="superColor_100" format="color"/>
+    <attr name="superColor_200" format="color"/>
+    <!--    и так далее до 900-->
+    <attr name="superColor_900" format="color"/>
+    <attr name="superColor" format="color"/>
+</resources>
