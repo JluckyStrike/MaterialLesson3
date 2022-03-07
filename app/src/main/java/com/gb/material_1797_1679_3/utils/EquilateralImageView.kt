@@ -9,4 +9,5 @@ class EquilateralImageView @JvmOverloads constructor(context: Context,attributeS
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, widthMeasureSpec)
     }
+
 }
