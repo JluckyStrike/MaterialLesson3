@@ -9,8 +9,8 @@ import com.gb.material_1797_1679_3.databinding.FragmentMarsBinding
 import com.gb.material_1797_1679_3.viewmodel.PictureOfTheDayViewModel
 import androidx.lifecycle.Observer
 import coil.load
-import com.gb.material_1797_1679_3.viewmodel.PictureOfTheDayMarsState
 import com.gb.material_1797_1679_3.viewmodel.PictureOfTheDayState
+import com.google.android.material.snackbar.Snackbar
 
 class MarsFragment : Fragment() {
 
@@ -41,11 +41,12 @@ class MarsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getLiveData2().observe(viewLifecycleOwner, Observer { renderData(it) })
-        viewModel.sendServerRequest2()
+        viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
+        //viewModel.marsCallback
+        viewModel.getMarsPicture()
     }
 
-    private fun renderData(pictureOfTheDayMarsState: PictureOfTheDayMarsState) {
+    private fun renderData(pictureOfTheDayMarsState: PictureOfTheDayState) {
         when (pictureOfTheDayMarsState) {
            /* is PictureOfTheDayMarsState.Error -> {
                 // TODO HW
@@ -58,8 +59,15 @@ class MarsFragment : Fragment() {
 
             }*/
 
-            is PictureOfTheDayMarsState.Success ->{
-                binding.imageMars.load(pictureOfTheDayMarsState.serverResponseData.imgSrc)
+
+            is PictureOfTheDayState.SuccessMars -> {
+                if(pictureOfTheDayMarsState.serverResponseData.photos.first().imgSrc == null){
+                    Snackbar.make(binding.root, "В этот день curiosity не сделал ни одного снимка", Snackbar.LENGTH_SHORT).show()
+                }else{
+                    val url = pictureOfTheDayMarsState.serverResponseData.photos.first().imgSrc
+                    binding.imageMars.load(url)
+                }
+
             }
         }
     }
