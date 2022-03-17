@@ -117,6 +117,7 @@ class PictureOfTheDayFragment : Fragment() {
                 // TODO HW
             }
             is PictureOfTheDayState.Success -> {
+
                 binding.imageView.load(pictureOfTheDayState.serverResponseData.hdurl)
                 //  TODO HW Добавьте описание (приходит с сервера) под фотографией в виде BottomSheet.
             }

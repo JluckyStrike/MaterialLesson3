@@ -8,8 +8,16 @@ interface PictureOfTheDayAPI {
     @GET("planetary/apod")
     fun getPictureOfTheDay(@Query("api_key") apiKey: String): Call<PictureOfTheDayResponseData>
 
+    @GET("mars-photos/api/v1/rovers/curiosity/photos")
+    fun getMarsImageByDate(
+        @Query("earth_date") earth_date: String,
+        @Query("api_key") apiKey: String,
+    ): Call<MarsPhotosServerResponseData>
 
-//    TODO HW
-//    @GET("planetary/apod")
-//    fun getPictureOfTheDayForDate(@Query("api_key") apiKey: String,@Query("date")  date:String): Call<PictureOfTheDayResponseData>
+
+    @GET("DONKI/FLR")
+    fun getSolarFlare(
+        @Query("api_key") apiKey: String,
+        @Query("startDate") startDate: String,
+    ): Call<List<SolarFlareResponseData>>
 }
