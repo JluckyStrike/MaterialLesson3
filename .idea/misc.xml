@@ -3,11 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/drawable/ctr_bg.xml" value="0.35625" />
+        <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/drawable/layout_bg.xml" value="0.35625" />
+        <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/layout/activity_layout.xml" value="0.3359375" />
         <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/layout/activity_main.xml" value="0.3359375" />
+        <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/layout/fragment_constraint.xml" value="0.3359375" />
+        <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/layout/fragment_coordinator.xml" value="0.25" />
         <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/layout/fragment_earth.xml" value="0.3359375" />
         <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/layout/fragment_main.xml" value="0.3359375" />
-        <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/layout/fragment_mars.xml" value="0.3359375" />
-        <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/layout/fragment_system.xml" value="0.3359375" />
+        <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.3359375" />
+        <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/menu/menu_bottom_navigation_activity_layout.xml" value="0.3359375" />
+        <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/menu/menu_bottom_navigation_view.xml" value="0.3359375" />
       </map>
     </option>
   </component>
