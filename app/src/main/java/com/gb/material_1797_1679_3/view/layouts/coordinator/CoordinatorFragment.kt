@@ -1,6 +1,9 @@
 package com.gb.material_1797_1679_3.view.layouts.coordinator
 
 import android.os.Bundle
+import android.transition.Slide
+import android.transition.TransitionManager
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +19,7 @@ class CoordinatorFragment : Fragment() {
     private val binding: FragmentCoordinatorBinding
         get() = _binding!!
 
-
+    private var textIsVisible = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +40,12 @@ class CoordinatorFragment : Fragment() {
 
         val behavior = ButtonBehavior(requireContext())
         (binding.myButton.getLayoutParams() as CoordinatorLayout.LayoutParams).behavior = behavior
+
+        binding.myButton.setOnClickListener{
+            TransitionManager.beginDelayedTransition(binding.coordFrag, Slide(Gravity.END))
+            textIsVisible = !textIsVisible
+            binding.text.visibility = if (textIsVisible) View.VISIBLE else View.GONE
+        }
     }
 
 
