@@ -3,6 +3,7 @@ package com.gb.material_1797_1679_3.view.layouts
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.gb.material_1797_1679_3.R
 import com.gb.material_1797_1679_3.databinding.ActivityLayoutBinding
 import com.gb.material_1797_1679_3.view.layouts.constraint.ConstraintFragment
@@ -17,6 +18,7 @@ class LayoutActivity : AppCompatActivity() {
         binding = ActivityLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initBottomNavigationView()
+
     }
 
     private fun initBottomNavigationView() {
@@ -44,7 +46,8 @@ class LayoutActivity : AppCompatActivity() {
         }
 
     private fun navigationTo(f: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.container, f).commit()
+        supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right)
+            .replace(R.id.container_anim, f).commit()
     }
 
 }

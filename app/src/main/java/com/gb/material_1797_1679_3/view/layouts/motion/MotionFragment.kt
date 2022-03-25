@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import com.gb.material_1797_1679_3.R
 import com.gb.material_1797_1679_3.databinding.FragmentMotionBinding
 
 
@@ -22,6 +25,7 @@ class MotionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMotionBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -33,6 +37,7 @@ class MotionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
     }
 
 
@@ -43,3 +48,4 @@ class MotionFragment : Fragment() {
         fun newInstance() = MotionFragment()
     }
 }
+
