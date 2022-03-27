@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.gb.material_1797_1679_3.R
 import com.gb.material_1797_1679_3.databinding.BottomNavigationLayoutBinding
+import com.gb.material_1797_1679_3.recycler.RecyclerActivity
 import com.gb.material_1797_1679_3.view.layouts.LayoutActivity
 import com.gb.material_1797_1679_3.view.navigation.BottomNavigationActivity
 import com.gb.material_1797_1679_3.view.navigation.NavigationActivity
@@ -44,6 +45,9 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                 }
                 R.id.navigation_three->{
                     startActivity(Intent(requireContext(), LayoutActivity::class.java))
+                }
+                R.id.navigation_four->{
+                    startActivity(Intent(requireContext(), RecyclerActivity::class.java))
                 }
             }
             true
