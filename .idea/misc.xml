@@ -15,6 +15,7 @@
         <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/layout/activity_recycler_item_cat.xml" value="0.3359375" />
         <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/layout/activity_recycler_item_do.xml" value="0.3359375" />
         <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/layout/activity_recycler_item_header.xml" value="0.3359375" />
+        <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.3359375" />
         <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/layout/edit_item.xml" value="0.3359375" />
         <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/layout/fragment_constraint.xml" value="0.3359375" />
         <entry key="..\:/Users/maini/Desktop/material_1797_1679_3-master/app/src/main/res/layout/fragment_coordinator.xml" value="0.25" />
@@ -28,5 +29,5 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="16" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="16" project-jdk-type="JavaSDK" />
 </project>

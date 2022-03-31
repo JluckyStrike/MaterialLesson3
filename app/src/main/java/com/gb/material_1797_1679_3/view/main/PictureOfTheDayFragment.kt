@@ -1,8 +1,14 @@
 package com.gb.material_1797_1679_3.view.main
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.SpannedString
+import android.text.style.BulletSpan
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.*
 import android.widget.Toast
@@ -21,15 +27,26 @@ import com.gb.material_1797_1679_3.viewmodel.PictureOfTheDayState
 import com.gb.material_1797_1679_3.viewmodel.PictureOfTheDayViewModel
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import android.os.CountDownTimer
+import android.os.Handler
+import android.view.animation.AnimationUtils
+import java.util.*
+import android.text.Spannable
+import android.graphics.Typeface
+import android.os.Build
+import androidx.core.content.res.ResourcesCompat
+
 
 class PictureOfTheDayFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding: FragmentMainBinding
         get() = _binding!!
 
-    companion object{
+    companion object {
         fun newInstance() = PictureOfTheDayFragment()
     }
+
+    private var spannableString = SpannableString("")
 
     private val viewModel: PictureOfTheDayViewModel by lazy {
         ViewModelProvider(this).get(PictureOfTheDayViewModel::class.java)
@@ -44,7 +61,7 @@ class PictureOfTheDayFragment : Fragment() {
         return binding.root
     }
 
-    private lateinit var bottomSheetBehavior:BottomSheetBehavior<ConstraintLayout>
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
@@ -52,18 +69,20 @@ class PictureOfTheDayFragment : Fragment() {
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
         viewModel.sendServerRequest()
 
-        binding.inputLayout.setEndIconOnClickListener{
+        binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
+                data =
+                    Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
             })
         }
 
         bottomSheetBehavior = BottomSheetBehavior.from(binding.included.bottomSheetContainer)
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
 
-        bottomSheetBehavior.addBottomSheetCallback(object :BottomSheetBehavior.BottomSheetCallback(){
+        bottomSheetBehavior.addBottomSheetCallback(object :
+            BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
-                when (newState){
+                when (newState) {
                     /*BottomSheetBehavior.STATE_DRAGGING -> TODO("not implemented")
                     BottomSheetBehavior.STATE_COLLAPSED -> TODO("not implemented")
                     BottomSheetBehavior.STATE_EXPANDED -> TODO("not implemented")
@@ -74,23 +93,36 @@ class PictureOfTheDayFragment : Fragment() {
             }
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                Log.d("mylogs","$slideOffset slideOffset")
+                Log.d("mylogs", "$slideOffset slideOffset")
             }
         })
 
 
-        binding.fab.setOnClickListener{
-            if(isMain){
+        binding.fab.setOnClickListener {
+            if (isMain) {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
                 binding.bottomAppBar.navigationIcon = null
                 binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-                binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_back_fab))
+                binding.fab.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_back_fab
+                    )
+                )
                 binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
-            }else{
+            } else {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-                binding.bottomAppBar.navigationIcon = ContextCompat.getDrawable(requireContext(),R.drawable.ic_hamburger_menu_bottom_bar)
+                binding.bottomAppBar.navigationIcon = ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_hamburger_menu_bottom_bar
+                )
                 binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_plus_fab))
+                binding.fab.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_plus_fab
+                    )
+                )
                 binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
             }
             isMain = !isMain
@@ -106,7 +138,7 @@ class PictureOfTheDayFragment : Fragment() {
         }
     }
 
-    var isMain:Boolean = true
+    var isMain: Boolean = true
 
     private fun renderData(pictureOfTheDayState: PictureOfTheDayState) {
         when (pictureOfTheDayState) {
@@ -119,24 +151,51 @@ class PictureOfTheDayFragment : Fragment() {
             is PictureOfTheDayState.Success -> {
 
                 binding.imageView.load(pictureOfTheDayState.serverResponseData.hdurl)
-                //  TODO HW Добавьте описание (приходит с сервера) под фотографией в виде BottomSheet.
+                val spannableStringBuilder = SpannableStringBuilder(pictureOfTheDayState.serverResponseData.explanation)
+                spannableString = SpannableString(pictureOfTheDayState.serverResponseData.explanation)
+
+                object : CountDownTimer(5000, 2000) {
+                    override fun onTick(l: Long) {
+                        val random = Random()
+                        var color = Color.argb(
+                            255,
+                            random.nextInt(256),
+                            random.nextInt(256),
+                            random.nextInt(256)
+                        )
+                        spannableString.setSpan(
+                            ForegroundColorSpan(color),
+                            0,
+                            spannableString.length,
+                            SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                        binding.included.bottomSheetDescription.text = spannableString
+                    }
+
+                    override fun onFinish() {
+                        start()
+                    }
+                }.start()
             }
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_bottom_bar,menu)
+        inflater.inflate(R.menu.menu_bottom_bar, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
-            R.id.app_bar_fav -> Toast.makeText(requireContext(),"app_bar_fav",Toast.LENGTH_SHORT).show()
+        when (item.itemId) {
+            R.id.app_bar_fav -> Toast.makeText(requireContext(), "app_bar_fav", Toast.LENGTH_SHORT)
+                .show()
             R.id.app_bar_settings -> {
-                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,ChipsFragment.newInstance()).addToBackStack("").commit()
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, ChipsFragment.newInstance()).addToBackStack("")
+                    .commit()
             }
             android.R.id.home -> {
-                BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager,"")
+                BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager, "")
             }
         }
         return super.onOptionsItemSelected(item)
