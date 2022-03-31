@@ -19,5 +19,10 @@
             app:showAsAction="always"
             android:title="На экран LayoutActivity" />
 
+        <item
+            android:id="@+id/navigation_four"
+            android:icon="@drawable/ic_send"
+            app:showAsAction="always"
+            android:title="На экран RecyclerActivity" />
 
 </menu>
