@@ -1,7 +1,6 @@
 <resources>
     <!-- Base application theme. -->
     <style name="MyBaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-
         <item name="android:statusBarColor">?superColor</item>
         <item name="android:navigationBarColor">?superColor</item>
         <item name="colorPrimary">?superColor</item>
